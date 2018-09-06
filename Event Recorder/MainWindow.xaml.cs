@@ -24,11 +24,20 @@ namespace Event_Recorder
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DateTime StartTime;
+        public bool ScrollToBottom
+        {
+            get { return (bool)GetValue(ScrollToBottomProperty); }
+            set { SetValue(ScrollToBottomProperty, value); }
+        }
+        public static readonly DependencyProperty ScrollToBottomProperty = DependencyProperty.Register("ScrollToBottom", typeof(bool), typeof(MainWindow), new PropertyMetadata(true));
 
+        private DateTime StartTime;
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = this;
 
             this.StartTime = DateTime.Now;
             LeagueClient.Default.BeginTryInit();
@@ -41,10 +50,10 @@ namespace Event_Recorder
             Dispatcher.Invoke(() =>
             {
                 bool scroll = Events.ShouldScrollToBottom();
-
+                
                 Events.Items.Add(new EventData(this.StartTime, obj));
 
-                if (scroll)
+                if (ScrollToBottom)
                     Events.ScrollToBottom();
             });
         }
@@ -65,6 +74,11 @@ namespace Event_Recorder
         {
             var ev = (EventData)Events.SelectedItem;
             Clipboard.SetText(ev.JsonEvent.Data.ToString());
+        }
+
+        private void Events_ScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            ScrollToBottom = Events.ShouldScrollToBottom();
         }
     }
 }

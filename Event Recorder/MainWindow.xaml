@@ -5,10 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Event_Recorder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#1E1E1E">
 
+    <Window.Resources>
+        <SolidColorBrush x:Key="TextColor" Color="#DCDCDC" />
+    </Window.Resources>
+    
     <Grid>
-        <ListBox x:Name="Events" Background="#1E1E1E">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel Margin="5">
+            <Button>Hola</Button>
+
+            <CheckBox VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{StaticResource TextColor}"
+                      IsChecked="{Binding ScrollToBottom, Mode=TwoWay}">Scroll to bottom</CheckBox>
+        </DockPanel>
+
+        <ListBox x:Name="Events" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"
+                 BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" Background="Transparent" IsHitTestVisible="True">
@@ -25,13 +42,13 @@
                                 <MenuItem Header="Copy raw data to clipboard (indented)" Click="CopyDataIndented"/>
                             </ContextMenu>
                         </Grid.ContextMenu>
-                        
+
                         <TextBlock Grid.Column="0" Text="{Binding TimeSinceStart}" HorizontalAlignment="Left"
                                    VerticalAlignment="Center" FontFamily="Consolas" Foreground="#2B91AF" />
                         <TextBlock Grid.Column="1" Text="{Binding JsonEvent.EventType}" HorizontalAlignment="Left"
                                    VerticalAlignment="Center" FontFamily="Consolas" Foreground="#BBA08C" Margin="5 0 0 0" />
                         <TextBlock Grid.Column="2" Text="{Binding JsonEvent.URI}" HorizontalAlignment="Left"
-                                   VerticalAlignment="Center" FontFamily="Consolas" Foreground="#DCDCDC" />
+                                   VerticalAlignment="Center" FontFamily="Consolas" Foreground="{StaticResource TextColor}" />
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
