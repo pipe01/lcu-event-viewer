@@ -19,6 +19,8 @@
 
         <DockPanel Margin="5" LastChildFill="False">
             <Button Padding="5" Click="Clear_Click">Clear</Button>
+            <Button Padding="5" Click="Save_Click" Margin="5 0 0 0">Save</Button>
+            <Button Padding="5" Click="Load_Click" Margin="5 0 0 0">Load</Button>
 
             <CheckBox VerticalAlignment="Center" Foreground="{StaticResource TextColor}" DockPanel.Dock="Right" 
                       IsChecked="{Binding ScrollToBottom, Mode=TwoWay}">Scroll to bottom</CheckBox>
@@ -27,8 +29,8 @@
                       IsChecked="{Binding Attach, Mode=TwoWay}">Attach to client</CheckBox>
         </DockPanel>
 
-        <ListBox x:Name="Events" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"
-                 BorderThickness="0">
+        <ListBox x:Name="EventsList" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"
+                 BorderThickness="0" ItemsSource="{Binding Events}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Stretch" Background="Transparent" IsHitTestVisible="True">

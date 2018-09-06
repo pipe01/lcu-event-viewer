@@ -1,4 +1,5 @@
 ﻿using LCU.NET.WAMP;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,20 @@ namespace Event_Recorder
         public DateTime RecordingStartTime { get; }
         public JsonApiEvent JsonEvent { get; }
 
+        [JsonIgnore]
         public TimeSpan TimeSinceStart => Time.Subtract(RecordingStartTime);
-        
-        public EventData(DateTime recordingStartTime, JsonApiEvent jsonEvent)
+
+        [JsonConstructor]
+        public EventData(DateTime time, DateTime recordingStartTime, JsonApiEvent jsonEvent)
         {
-            this.Time = DateTime.Now;
+            this.Time = time;
             this.RecordingStartTime = recordingStartTime;
             this.JsonEvent = jsonEvent;
+        }
+
+        public EventData(DateTime recordingStartTime, JsonApiEvent jsonEvent) 
+            : this(DateTime.Now, recordingStartTime, jsonEvent)
+        {
         }
     }
 }
