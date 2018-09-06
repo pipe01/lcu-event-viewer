@@ -84,12 +84,17 @@ namespace Event_Recorder
 
         private void Default_ConnectedChanged(bool connected)
         {
-            Dispatcher.Invoke(() =>
+            Dispatcher.Invoke(async () =>
             {
                 AttachChk.IsEnabled = connected;
 
                 if (!connected)
+                {
                     Attach = false;
+
+                    await Task.Delay(1000);
+                    LeagueClient.Default.BeginTryInit();
+                }
             });
         }
 
