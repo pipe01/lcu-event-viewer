@@ -30,7 +30,14 @@ namespace Event_Recorder
             set { SetValue(ScrollToBottomProperty, value); }
         }
         public static readonly DependencyProperty ScrollToBottomProperty = DependencyProperty.Register("ScrollToBottom", typeof(bool), typeof(MainWindow), new PropertyMetadata(true));
-
+        
+        public bool Attach
+        {
+            get { return (bool)GetValue(AttachProperty); }
+            set { SetValue(AttachProperty, value); }
+        }
+        public static readonly DependencyProperty AttachProperty = DependencyProperty.Register("Attach", typeof(bool), typeof(MainWindow), new PropertyMetadata(true));
+        
         private DateTime StartTime;
         
         public MainWindow()
@@ -39,8 +46,13 @@ namespace Event_Recorder
 
             this.DataContext = this;
 
+            if (!LeagueClient.Default.SmartInit())
+            {
+                MessageBox.Show("Make sure the LoL client is open!", "Dude", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                this.Close();
+            }
+
             this.StartTime = DateTime.Now;
-            LeagueClient.Default.BeginTryInit();
 
             LeagueSocket.SubscribeRaw(Handler);
         }
@@ -49,6 +61,9 @@ namespace Event_Recorder
         {
             Dispatcher.Invoke(() =>
             {
+                if (!Attach)
+                    return;
+
                 Events.Items.Add(new EventData(this.StartTime, obj));
 
                 if (ScrollToBottom)
@@ -82,9 +97,14 @@ namespace Event_Recorder
                 ScrollToBottom = should;
         }
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        private void Clear()
         {
             Events.Items.Clear();
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            Clear();
         }
     }
 }
