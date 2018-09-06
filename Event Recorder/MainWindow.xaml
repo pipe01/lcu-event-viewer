@@ -25,14 +25,14 @@
             <TextBlock Margin="5 0 0 0" Text="URI filter: " Foreground="{StaticResource TextColor}" VerticalAlignment="Center" />
             <TextBox x:Name="Filter" Width="200" Height="22" TextChanged="Filter_TextChanged" />
             <CheckBox x:Name="RegexFilter" VerticalAlignment="Center" Foreground="{StaticResource TextColor}"
-                      Checked="RegexFilter_Checked" Unchecked="RegexFilter_Checked"
-                      >Regex</CheckBox>
+                      Checked="RegexFilter_Checked" Unchecked="RegexFilter_Checked">Regex</CheckBox>
 
             <CheckBox VerticalAlignment="Center" Foreground="{StaticResource TextColor}" DockPanel.Dock="Right" 
                       IsChecked="{Binding ScrollToBottom, Mode=TwoWay}">Scroll to bottom</CheckBox>
-            <CheckBox VerticalAlignment="Center" Foreground="{StaticResource TextColor}" DockPanel.Dock="Right"
-                      Margin="0 0 5 0"
-                      IsChecked="{Binding Attach, Mode=TwoWay}">Attach to client</CheckBox>
+            <CheckBox x:Name="AttachChk" VerticalAlignment="Center" Foreground="{StaticResource TextColor}"
+                      DockPanel.Dock="Right" Margin="0 0 5 0" IsEnabled="False" IsChecked="{Binding Attach, Mode=TwoWay}">
+                Attach to client
+            </CheckBox>
         </DockPanel>
 
         <ListBox x:Name="EventsList" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"

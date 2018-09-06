@@ -51,16 +51,13 @@ namespace Event_Recorder
 
             this.DataContext = this;
 
-            if (!LeagueClient.Default.SmartInit())
-            {
-                MessageBox.Show("Make sure the LoL client is open!", "Dude", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                this.Close();
-            }
+            LeagueClient.Default.ConnectedChanged += Default_ConnectedChanged;
 
-            this.StartTime = DateTime.Now;
-
+            LeagueClient.Default.BeginTryInit();
             LeagueSocket.SubscribeRaw(Handler);
 
+            this.StartTime = DateTime.Now;
+            
             CollectionViewSource.GetDefaultView(Events).Filter = o =>
             {
                 var ev = (EventData)o;
@@ -83,6 +80,17 @@ namespace Event_Recorder
 
                 return ev.JsonEvent.URI.Contains(Filter.Text);
             };
+        }
+
+        private void Default_ConnectedChanged(bool connected)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                AttachChk.IsEnabled = connected;
+
+                if (!connected)
+                    Attach = false;
+            });
         }
 
         private void Handler(JsonApiEvent obj)
