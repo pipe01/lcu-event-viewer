@@ -6,7 +6,35 @@
         xmlns:local="clr-namespace:Event_Recorder"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        
+        <ListBox x:Name="Events" Background="#1E1E1E">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" Background="Transparent" IsHitTestVisible="True">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Copy URI to clipboard" Click="CopyURI"/>
+                                <MenuItem Header="Copy raw data to clipboard" Click="CopyData"/>
+                                <MenuItem Header="Copy raw data to clipboard (indented)" Click="CopyDataIndented"/>
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                        
+                        <TextBlock Grid.Column="0" Text="{Binding TimeSinceStart}" HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" FontFamily="Consolas" Foreground="#2B91AF" />
+                        <TextBlock Grid.Column="1" Text="{Binding JsonEvent.EventType}" HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" FontFamily="Consolas" Foreground="#BBA08C" Margin="5 0 0 0" />
+                        <TextBlock Grid.Column="2" Text="{Binding JsonEvent.URI}" HorizontalAlignment="Left"
+                                   VerticalAlignment="Center" FontFamily="Consolas" Foreground="#DCDCDC" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>
