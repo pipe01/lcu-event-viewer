@@ -49,8 +49,6 @@ namespace Event_Recorder
         {
             Dispatcher.Invoke(() =>
             {
-                bool scroll = Events.ShouldScrollToBottom();
-                
                 Events.Items.Add(new EventData(this.StartTime, obj));
 
                 if (ScrollToBottom)
@@ -78,7 +76,10 @@ namespace Event_Recorder
 
         private void Events_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
-            ScrollToBottom = Events.ShouldScrollToBottom();
+            bool should = Events.ShouldScrollToBottom();
+
+            if ((!should || ScrollToBottom) && (!ScrollToBottom || should))
+                ScrollToBottom = should;
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
