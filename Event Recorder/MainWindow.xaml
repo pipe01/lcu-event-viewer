@@ -30,25 +30,22 @@
         </DockPanel>
 
         <ListBox x:Name="EventsList" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"
-                 BorderThickness="0" ItemsSource="{Binding Events}" SelectionMode="Extended">
+                 BorderThickness="0" ItemsSource="{Binding Events}" SelectionMode="Extended" MouseDown="EventsList_MouseDown"
+                 ContextMenuOpening="EventsList_ContextMenuOpening">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+            
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Stretch" Background="Transparent" IsHitTestVisible="True">
+                    <Grid IsHitTestVisible="False">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="50" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-
-                        <Grid.ContextMenu>
-                            <ContextMenu>
-                                <MenuItem Header="Copy URI to clipboard" Click="CopyURI"/>
-                                <MenuItem Header="Copy raw data to clipboard" Click="CopyData"/>
-                                <MenuItem Header="Copy raw data to clipboard (indented)" Click="CopyDataIndented"/>
-                                <Separator />
-                                <MenuItem Header="Delete" Click="Delete_Click" />
-                            </ContextMenu>
-                        </Grid.ContextMenu>
 
                         <TextBlock Grid.Column="0" Text="{Binding TimeSinceStart}" HorizontalAlignment="Left"
                                    VerticalAlignment="Center" FontFamily="Consolas" Foreground="#2B91AF" />
@@ -59,6 +56,16 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Copy URI to clipboard" Click="CopyURI"/>
+                    <MenuItem Header="Copy raw data to clipboard" Click="CopyData"/>
+                    <MenuItem Header="Copy raw data to clipboard (indented)" Click="CopyDataIndented"/>
+                    <Separator />
+                    <MenuItem Header="Delete" Click="Delete_Click" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
         </ListBox>
     </Grid>
 </Window>

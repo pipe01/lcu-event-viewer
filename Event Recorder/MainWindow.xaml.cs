@@ -154,5 +154,15 @@ namespace Event_Recorder
                 Events.Remove(item);
             }
         }
+
+        private void EventsList_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            EventsList.UnselectAll();
+        }
+        
+        private void EventsList_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+        {
+            e.Handled = EventsList.SelectedItems.Count == 0;
+        }
     }
 }
