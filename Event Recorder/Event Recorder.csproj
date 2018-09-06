@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LCU.NET\LCU.NET.csproj">
+      <Project>{531938f3-2e4e-4c45-be4d-ceced31ac294}</Project>
+      <Name>LCU.NET</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
