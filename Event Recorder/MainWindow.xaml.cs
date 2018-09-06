@@ -126,7 +126,7 @@ namespace Event_Recorder
         {
             var diag = new VistaOpenFileDialog
             {
-                Title = "Choose where the recorded log file",
+                Title = "Choose where the recorded log file is",
                 Filter = "JSON file (*.json)|*.json|All files (*.*)|*.*",
                 CheckFileExists = true
             };
