@@ -22,6 +22,12 @@
             <Button Padding="5" Click="Save_Click" Margin="5 0 0 0">Save</Button>
             <Button Padding="5" Click="Load_Click" Margin="5 0 0 0">Load</Button>
 
+            <TextBlock Margin="5 0 0 0" Text="URI filter: " Foreground="{StaticResource TextColor}" VerticalAlignment="Center" />
+            <TextBox x:Name="Filter" Width="200" Height="22" TextChanged="Filter_TextChanged" />
+            <CheckBox x:Name="RegexFilter" VerticalAlignment="Center" Foreground="{StaticResource TextColor}"
+                      Checked="RegexFilter_Checked" Unchecked="RegexFilter_Checked"
+                      >Regex</CheckBox>
+
             <CheckBox VerticalAlignment="Center" Foreground="{StaticResource TextColor}" DockPanel.Dock="Right" 
                       IsChecked="{Binding ScrollToBottom, Mode=TwoWay}">Scroll to bottom</CheckBox>
             <CheckBox VerticalAlignment="Center" Foreground="{StaticResource TextColor}" DockPanel.Dock="Right"

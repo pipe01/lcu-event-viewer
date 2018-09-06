@@ -60,6 +60,29 @@ namespace Event_Recorder
             this.StartTime = DateTime.Now;
 
             LeagueSocket.SubscribeRaw(Handler);
+
+            CollectionViewSource.GetDefaultView(Events).Filter = o =>
+            {
+                var ev = (EventData)o;
+                Filter.Background = new SolidColorBrush(Colors.White);
+                Filter.ToolTip = null;
+
+                if (RegexFilter.IsChecked == true)
+                {
+                    try
+                    {
+                        return Regex.IsMatch(ev.JsonEvent.URI, Filter.Text);
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        Filter.Background = new SolidColorBrush(Color.FromRgb(255, 150, 150));
+                        Filter.ToolTip = ex.Message;
+                        return false;
+                    }
+                }
+
+                return ev.JsonEvent.URI.Contains(Filter.Text);
+            };
         }
 
         private void Handler(JsonApiEvent obj)
@@ -163,6 +186,16 @@ namespace Event_Recorder
         private void EventsList_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
             e.Handled = EventsList.SelectedItems.Count == 0;
+        }
+
+        private void Filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(Events).Refresh();
+        }
+
+        private void RegexFilter_Checked(object sender, RoutedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(Events).Refresh();
         }
     }
 }
