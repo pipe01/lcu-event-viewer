@@ -146,5 +146,13 @@ namespace Event_Recorder
                 }
             }
         }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in EventsList.SelectedItems.Cast<EventData>().ToArray())
+            {
+                Events.Remove(item);
+            }
+        }
     }
 }
