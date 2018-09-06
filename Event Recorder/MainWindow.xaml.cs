@@ -38,7 +38,15 @@ namespace Event_Recorder
 
         private void Handler(JsonApiEvent obj)
         {
-            Dispatcher.Invoke(() => Events.Items.Add(new EventData(this.StartTime, obj)));
+            Dispatcher.Invoke(() =>
+            {
+                bool scroll = Events.ShouldScrollToBottom();
+
+                Events.Items.Add(new EventData(this.StartTime, obj));
+
+                if (scroll)
+                    Events.ScrollToBottom();
+            });
         }
         
         private void CopyURI(object sender, RoutedEventArgs e)
