@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <DockPanel Margin="5">
-            <Button>Hola</Button>
+            <Button Padding="5" Click="Clear_Click">Clear</Button>
 
             <CheckBox VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{StaticResource TextColor}"
                       IsChecked="{Binding ScrollToBottom, Mode=TwoWay}">Scroll to bottom</CheckBox>

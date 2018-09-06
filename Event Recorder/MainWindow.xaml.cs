@@ -80,5 +80,10 @@ namespace Event_Recorder
         {
             ScrollToBottom = Events.ShouldScrollToBottom();
         }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            Events.Items.Clear();
+        }
     }
 }
