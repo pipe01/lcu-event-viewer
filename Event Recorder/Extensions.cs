@@ -22,8 +22,6 @@ namespace Event_Recorder
 
             if (scrollViewer != null)
             {
-                Debug.WriteLine("{0} + {1} => {2}", scrollViewer.VerticalOffset, scrollViewer.ViewportHeight, scrollViewer.ExtentHeight);
-
                 return scrollViewer.ScrollableHeight > 0
                     && scrollViewer.VerticalOffset + scrollViewer.ViewportHeight >= scrollViewer.ExtentHeight - 1;
             }
