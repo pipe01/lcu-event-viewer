@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Event_Recorder"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#1E1E1E">
+        Title="Event viewer" Height="450" Width="800" Background="#1E1E1E">
 
     <Window.Resources>
         <SolidColorBrush x:Key="TextColor" Color="#DCDCDC" />
