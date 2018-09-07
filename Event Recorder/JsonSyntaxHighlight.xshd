@@ -5,9 +5,10 @@
   <Color name="Symbols" foreground="#808080" />
   <Color name="ParamName" foreground="#D7BA7D" />
   <Color name="Literal" foreground="#DADADA" />
+  <Color name="Keyword" foreground="#569CD6" />
 
   <RuleSet ignoreCase="false">
-    <Keywords color="Digits" >
+    <Keywords color="Keyword" >
       <Word>true</Word>
       <Word>false</Word>
     </Keywords>

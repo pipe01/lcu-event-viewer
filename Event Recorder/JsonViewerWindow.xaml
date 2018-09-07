@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="JsonViewerWindow" Height="450" Width="800">
     <Grid>
-        <avalon:TextEditor x:Name="Viewer" Background="#1E1E1E" FontFamily="Consolas" SyntaxHighlighting="Custom Highlighting"
+        <avalon:TextEditor x:Name="Viewer" Background="#1E1E1E" FontFamily="Consolas" SyntaxHighlighting="JSON"
                            FontSize="10pt" Foreground="#DCDCDC" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
     </Grid>
 </Window>

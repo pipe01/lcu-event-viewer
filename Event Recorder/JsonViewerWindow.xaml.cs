@@ -37,7 +37,7 @@ namespace Event_Recorder
             }
 
             // and register it in the HighlightingManager
-            HighlightingManager.Instance.RegisterHighlighting("Custom Highlighting", new string[] { ".cool" }, customHighlighting);
+            HighlightingManager.Instance.RegisterHighlighting("JSON", new string[] { ".json" }, customHighlighting);
             
             InitializeComponent();
 
