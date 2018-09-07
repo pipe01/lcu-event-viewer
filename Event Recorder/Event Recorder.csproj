@@ -81,7 +81,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EventData.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="JsonViewerWindow.xaml.cs">
       <DependentUpon>JsonViewerWindow.xaml</DependentUpon>
