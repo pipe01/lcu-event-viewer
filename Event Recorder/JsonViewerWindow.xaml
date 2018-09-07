@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Event_Recorder"
+        xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
         mc:Ignorable="d"
         Title="JsonViewerWindow" Height="450" Width="800">
     <Grid>
-        
+        <avalon:TextEditor x:Name="Viewer" Background="#1E1E1E" FontFamily="Consolas" SyntaxHighlighting="Custom Highlighting"
+                           FontSize="10pt" Foreground="#DCDCDC" IsReadOnly="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
     </Grid>
 </Window>

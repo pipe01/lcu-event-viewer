@@ -210,5 +210,15 @@ namespace Event_Recorder
         {
             CollectionViewSource.GetDefaultView(Events).Refresh();
         }
+
+        private void EventsList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (EventsList.SelectedItems.Count != 1)
+                return;
+
+            var item = (EventData)EventsList.SelectedItem;
+
+            new JsonViewerWindow(item.JsonEvent.Data.ToString(), item.JsonEvent.URI).Show();
+        }
     }
 }

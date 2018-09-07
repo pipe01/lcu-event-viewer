@@ -37,7 +37,7 @@
 
         <ListBox x:Name="EventsList" Grid.Row="1" Background="Transparent" ScrollViewer.ScrollChanged="Events_ScrollChanged"
                  BorderThickness="0" ItemsSource="{Binding Events}" SelectionMode="Extended" MouseDown="EventsList_MouseDown"
-                 ContextMenuOpening="EventsList_ContextMenuOpening">
+                 ContextMenuOpening="EventsList_ContextMenuOpening" MouseDoubleClick="EventsList_MouseDoubleClick">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

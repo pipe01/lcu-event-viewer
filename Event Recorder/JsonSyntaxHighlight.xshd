@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SyntaxDefinition name="Json" xmlns="http://icsharpcode.net/sharpdevelop/syntaxdefinition/2008">
+  <Color name="Digits" foreground="#B5CEA8" />
+  <Color name="Value" foreground="#D69D85" />
+  <Color name="Symbols" foreground="#808080" />
+  <Color name="ParamName" foreground="#D7BA7D" />
+  <Color name="Literal" foreground="#DADADA" />
+
+  <RuleSet ignoreCase="false">
+    <Keywords color="Digits" >
+      <Word>true</Word>
+      <Word>false</Word>
+    </Keywords>
+
+    <Span color="ParamName">
+      <Begin>"</Begin>
+      <End>(?=:)</End>
+    </Span>
+
+    <Span color="Value" multiline="true">
+      <Begin>
+        (?&lt;=:)\040"[^"]*
+      </Begin>
+      <End>"</End>
+      <RuleSet>
+        <Span begin="\\" end="." />
+      </RuleSet>
+    </Span>
+
+    <Rule color="Symbols">[:,]</Rule>
+
+    <Rule color="Digits">\b0[xX][0-9a-fA-F]+|(\b\d+(\.[0-9]+)?|\.[0-9]+)([eE][+-]?[0-9]+)?</Rule>
+  </RuleSet>
+</SyntaxDefinition>
